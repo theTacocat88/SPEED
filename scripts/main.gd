@@ -2,22 +2,34 @@ extends Control
 
 var player: Dictionary = {}
 
+# INFO: Character Creation @onready
 @onready var char_creation_popup_1: PopupPanel = $CharCreation
 @onready var char_creation_popup_warrior: PopupPanel = $WarriorWeaponsSelection
 @onready var char_creation_popup_mage: PopupPanel = $MageWeaponsSelection
 @onready var char_creation_popup_barbarian: PopupPanel = $BarbarianWeaponsSelection
+
+# INFO: Input for char_creation_popup_1
 @onready var name_input: LineEdit = $CharCreation/Layout/NameInput
 @onready var base_select: OptionButton = $CharCreation/Layout/BaseSelect
 
+# INFO: Variables for SkillPointAllocation
+@onready var skill_point_allocation: PopupPanel = $SkillPointAllocation
+@onready var sp_label: Label = $SkillPointAllocation/SkillPoints/SPLabel
+@onready var skill_grid: GridContainer = $SkillPointAllocation/SkillPoints/SkillGrid
+
+# INFO: base_select.selected = 0 sets to WARRIOR
 func _ready() -> void:
 	base_select.selected = 0
 
+# NOTE: Quit button
 func _on_quit_pressed() -> void:
 	get_tree().quit(0)
 
+# NOTE: New Game button
 func _on_new_game_pressed() -> void:
 	char_creation_popup_1.popup_centered()
 
+# NOTE: Continue in first char_creation popup
 func _on_continue_cswp_pressed() -> void:
 	var cname: String = name_input.text.strip_edges()
 	if cname == "":
@@ -67,13 +79,15 @@ func _on_continue_cswp_pressed() -> void:
 	player["weapons"] = []
 	player["equipped_weapon"] = ""
 	
+	# CRITICAL: USE SAVE TO SAVE player[] TO save.json
 	save()
 	weapon_window()
-	#get_tree().change_scene_to_file("res://Game.tscn")
 
+# NOTE: Cancel in first char_creation popup
 func _on_cancel_charcc_pressed() -> void:
 	char_creation_popup_1.hide()
 
+# INFO: Weapon selction window
 func weapon_window():
 	char_creation_popup_1.hide()
 	match player["base"]:
@@ -84,6 +98,7 @@ func weapon_window():
 		"Barbarian":
 			char_creation_popup_barbarian.popup_centered()
 
+# CRITICAL: USE FOR SAVING TO save.json
 func save():
 	var filepath: String = "user://save.json"
 	var file = FileAccess.open(filepath, FileAccess.WRITE)
@@ -93,6 +108,7 @@ func save():
 	file.store_string(json_str)
 	file.close()
 
+# NOTE: Select button in weapon selection
 func _on_select_pressed(weapon: String) -> void:
 	player["equipped_weapon"] = weapon
 	player["weapons"].append(weapon)
@@ -104,3 +120,19 @@ func _on_select_pressed(weapon: String) -> void:
 			char_creation_popup_mage.hide()
 		"Barbarian":
 			char_creation_popup_barbarian.hide()
+	
+	allocate_skills()
+
+# NOTE: Spend button in Stat Allocation
+func _on_spend_pressed() -> void:
+	pass # Replace with function body.
+
+# NOTE: Done button in Stat Allocation
+func _on_done_pressed() -> void:
+	pass # Replace with function body.
+
+# INFO: Shows skill point allocation screen
+func allocate_skills():
+	pass
+
+#CRITICAL: FINISH ALLOCATION

@@ -498,6 +498,39 @@ theme_override_fonts/font = ExtResource("1_yqeox")
 theme_override_font_sizes/font_size = 12
 text = "Select"
 
+[node name="SkillPointAllocation" type="PopupPanel" parent="."]
+oversampling_override = 1.0
+initial_position = 2
+size = Vector2i(150, 105)
+visible = true
+
+[node name="SkillPoints" type="VBoxContainer" parent="SkillPointAllocation"]
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 146.0
+offset_bottom = 101.0
+
+[node name="SPLabel" type="Label" parent="SkillPointAllocation/SkillPoints"]
+layout_mode = 2
+text = "Skill Points: 0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SkillGrid" type="GridContainer" parent="SkillPointAllocation/SkillPoints"]
+layout_mode = 2
+columns = 3
+
+[node name="ButtonBox" type="VBoxContainer" parent="SkillPointAllocation/SkillPoints"]
+layout_mode = 2
+
+[node name="Spend" type="Button" parent="SkillPointAllocation/SkillPoints/ButtonBox"]
+layout_mode = 2
+text = "Spend Point"
+
+[node name="Done" type="Button" parent="SkillPointAllocation/SkillPoints/ButtonBox"]
+layout_mode = 2
+text = "Done"
+
 [connection signal="pressed" from="MenuContainer/NewGame" to="." method="_on_new_game_pressed"]
 [connection signal="pressed" from="MenuContainer/Quit" to="." method="_on_quit_pressed"]
 [connection signal="pressed" from="CharCreation/Layout/Continue" to="." method="_on_continue_cswp_pressed"]
@@ -514,3 +547,5 @@ text = "Select"
 [connection signal="pressed" from="BarbarianWeaponsSelection/LayoutBarbarian/Weapons1/BasicFlailContainer/Select" to="." method="_on_select_pressed" binds= ["BasicFlail"]]
 [connection signal="pressed" from="BarbarianWeaponsSelection/LayoutBarbarian/Weapons2/CrowbarContainer/Select" to="." method="_on_select_pressed" binds= ["Crowbar"]]
 [connection signal="pressed" from="BarbarianWeaponsSelection/LayoutBarbarian/Weapons2/SwordHiltContainer/Select" to="." method="_on_select_pressed" binds= ["SwordHilt"]]
+[connection signal="pressed" from="SkillPointAllocation/SkillPoints/ButtonBox/Spend" to="." method="_on_spend_pressed"]
+[connection signal="pressed" from="SkillPointAllocation/SkillPoints/ButtonBox/Done" to="." method="_on_done_pressed"]
