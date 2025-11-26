@@ -1,0 +1,505 @@
+[gd_scene load_steps=4 format=3 uid="uid://ddcg1xqolhm2b"]
+
+[ext_resource type="Script" uid="uid://3c1ru4pq253" path="res://scripts/main.gd" id="1_vjb58"]
+[ext_resource type="FontFile" uid="uid://3n8mfvbhg03" path="res://fonts/Lexend-VariableFont_wght.ttf" id="1_yqeox"]
+
+[sub_resource type="Theme" id="Theme_yqeox"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 800.0
+offset_bottom = 600.0
+theme = SubResource("Theme_yqeox")
+script = ExtResource("1_vjb58")
+
+[node name="MenuContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 274.0
+offset_top = 8.0
+offset_right = 526.0
+offset_bottom = 592.0
+
+[node name="Title" type="Label" parent="MenuContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_yqeox")
+theme_override_font_sizes/font_size = 27
+text = "SPEED v0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NewGame" type="Button" parent="MenuContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_yqeox")
+text = "New Game"
+
+[node name="LoadGame" type="Button" parent="MenuContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_yqeox")
+text = "Load Game"
+
+[node name="Settings" type="Button" parent="MenuContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_yqeox")
+text = "Settings"
+
+[node name="Quit" type="Button" parent="MenuContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_yqeox")
+text = "Quit"
+
+[node name="CharCreation" type="PopupPanel" parent="."]
+oversampling_override = 1.0
+title = "Character Creation"
+initial_position = 2
+size = Vector2i(400, 201)
+
+[node name="Layout" type="VBoxContainer" parent="CharCreation"]
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 396.0
+offset_bottom = 197.0
+size_flags_vertical = 3
+
+[node name="Title" type="Label" parent="CharCreation/Layout"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_yqeox")
+theme_override_font_sizes/font_size = 20
+text = "Create your Character:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Name" type="Label" parent="CharCreation/Layout"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_yqeox")
+theme_override_font_sizes/font_size = 15
+text = "Name:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NameInput" type="LineEdit" parent="CharCreation/Layout"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_yqeox")
+theme_override_font_sizes/font_size = 14
+placeholder_text = "ex. John the Brave"
+max_length = 100
+caret_blink = true
+caret_blink_interval = 0.55
+
+[node name="Base" type="Label" parent="CharCreation/Layout"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_yqeox")
+theme_override_font_sizes/font_size = 15
+text = "Base:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BaseSelect" type="OptionButton" parent="CharCreation/Layout"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_yqeox")
+theme_override_font_sizes/font_size = 14
+item_count = 3
+popup/item_0/text = "Warrior"
+popup/item_0/id = 0
+popup/item_1/text = "Mage"
+popup/item_1/id = 1
+popup/item_2/text = "Barbarian"
+popup/item_2/id = 2
+
+[node name="Continue" type="Button" parent="CharCreation/Layout"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_yqeox")
+theme_override_font_sizes/font_size = 15
+text = "Continue"
+
+[node name="Cancel" type="Button" parent="CharCreation/Layout"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_yqeox")
+theme_override_font_sizes/font_size = 15
+text = "Cancel"
+
+[node name="WarriorWeaponsSelection" type="PopupPanel" parent="."]
+oversampling_override = 1.0
+title = "Character Creation"
+initial_position = 2
+size = Vector2i(368, 493)
+
+[node name="LayoutWarrior" type="VBoxContainer" parent="WarriorWeaponsSelection"]
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 364.0
+offset_bottom = 489.0
+size_flags_vertical = 3
+
+[node name="Title" type="Label" parent="WarriorWeaponsSelection/LayoutWarrior"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_yqeox")
+theme_override_font_sizes/font_size = 20
+text = "Choose your Weapon"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Weapons1" type="HBoxContainer" parent="WarriorWeaponsSelection/LayoutWarrior"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="IronBroadswordContainer" type="VBoxContainer" parent="WarriorWeaponsSelection/LayoutWarrior/Weapons1"]
+layout_mode = 2
+
+[node name="IronBroadsword" type="Label" parent="WarriorWeaponsSelection/LayoutWarrior/Weapons1/IronBroadswordContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_yqeox")
+theme_override_font_sizes/font_size = 12
+text = "Iron Broadsword
+Type: Blade | Damage: P12
+Speed: Medium | Block: 7
+Accuracy: 85% | Durability: 80
+Ability: Slash
+Double Damage Attack"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Select" type="Button" parent="WarriorWeaponsSelection/LayoutWarrior/Weapons1/IronBroadswordContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_yqeox")
+theme_override_font_sizes/font_size = 12
+text = "Select"
+
+[node name="Separator" type="VSeparator" parent="WarriorWeaponsSelection/LayoutWarrior/Weapons1"]
+layout_mode = 2
+
+[node name="OakHandleWarAxeContainer" type="VBoxContainer" parent="WarriorWeaponsSelection/LayoutWarrior/Weapons1"]
+layout_mode = 2
+
+[node name="OakHandleWarAxe" type="Label" parent="WarriorWeaponsSelection/LayoutWarrior/Weapons1/OakHandleWarAxeContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_yqeox")
+theme_override_font_sizes/font_size = 12
+text = "Oak-Handle War Axe
+Type: Sharp | Damage: P15
+Speed: Slow | Block: 5
+Accuracy: 90% | Durability: 75
+Ability: Cleave
+-5 Damage | Hits 3 Enemies"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Select" type="Button" parent="WarriorWeaponsSelection/LayoutWarrior/Weapons1/OakHandleWarAxeContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_yqeox")
+theme_override_font_sizes/font_size = 12
+text = "Select"
+
+[node name="HSeparator" type="HSeparator" parent="WarriorWeaponsSelection/LayoutWarrior"]
+layout_mode = 2
+
+[node name="Weapons2" type="HBoxContainer" parent="WarriorWeaponsSelection/LayoutWarrior"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="SteelShortswordContainer" type="VBoxContainer" parent="WarriorWeaponsSelection/LayoutWarrior/Weapons2"]
+layout_mode = 2
+
+[node name="SteelShortsword" type="Label" parent="WarriorWeaponsSelection/LayoutWarrior/Weapons2/SteelShortswordContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_yqeox")
+theme_override_font_sizes/font_size = 12
+text = "Steel Shortsword
+Type: Blade | Damage: P8
+Speed: Fast | Block: 3
+Accuracy: 75% | Durability: 50
+Ability: Quick Thrust
+-3 Damage | Accuracy 100%"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Select" type="Button" parent="WarriorWeaponsSelection/LayoutWarrior/Weapons2/SteelShortswordContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_yqeox")
+theme_override_font_sizes/font_size = 12
+text = "Select"
+
+[node name="Separator" type="VSeparator" parent="WarriorWeaponsSelection/LayoutWarrior/Weapons2"]
+layout_mode = 2
+
+[node name="IronGreatswordContainer" type="VBoxContainer" parent="WarriorWeaponsSelection/LayoutWarrior/Weapons2"]
+layout_mode = 2
+
+[node name="IronGreatsword" type="Label" parent="WarriorWeaponsSelection/LayoutWarrior/Weapons2/IronGreatswordContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_yqeox")
+theme_override_font_sizes/font_size = 12
+text = "Iron Greatsword
+Type: Blade | Damage: P16
+Speed: Slow | Block: 8
+Accuracy: 75% | Durability: 100
+Ability: Heavy Swing
++2 Damage | Extra Turn"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Select" type="Button" parent="WarriorWeaponsSelection/LayoutWarrior/Weapons2/IronGreatswordContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_yqeox")
+theme_override_font_sizes/font_size = 12
+text = "Select"
+
+[node name="HSeparator2" type="HSeparator" parent="WarriorWeaponsSelection/LayoutWarrior"]
+layout_mode = 2
+
+[node name="SimpleSwordContainer" type="VBoxContainer" parent="WarriorWeaponsSelection/LayoutWarrior"]
+layout_mode = 2
+
+[node name="SimpleSword" type="Label" parent="WarriorWeaponsSelection/LayoutWarrior/SimpleSwordContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_yqeox")
+theme_override_font_sizes/font_size = 12
+text = "Simple Sword
+Type: Blade | Damage: P10
+Speed: Medium | Block: 5
+Accuracy: 75% | Durability: 80
+Ability: Parry Counter
+Use on your turn for a 50% 
+chance to parry an enemy attack 
+and deal back half their damage."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Select" type="Button" parent="WarriorWeaponsSelection/LayoutWarrior/SimpleSwordContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_yqeox")
+theme_override_font_sizes/font_size = 12
+text = "Select"
+
+[node name="MageWeaponsSelection" type="PopupPanel" parent="."]
+oversampling_override = 1.0
+title = "Character Creation"
+initial_position = 2
+size = Vector2i(367, 367)
+
+[node name="LayoutMage" type="VBoxContainer" parent="MageWeaponsSelection"]
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 363.0
+offset_bottom = 363.0
+size_flags_vertical = 3
+
+[node name="Title" type="Label" parent="MageWeaponsSelection/LayoutMage"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_yqeox")
+theme_override_font_sizes/font_size = 20
+text = "Choose your Weapon"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Weapons1" type="HBoxContainer" parent="MageWeaponsSelection/LayoutMage"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="AshwoodStaffContainer" type="VBoxContainer" parent="MageWeaponsSelection/LayoutMage/Weapons1"]
+layout_mode = 2
+
+[node name="AshwoodStaff" type="Label" parent="MageWeaponsSelection/LayoutMage/Weapons1/AshwoodStaffContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_yqeox")
+theme_override_font_sizes/font_size = 12
+text = "Ashwood Staff
+Type: Wand | Damage: M10 P5
+Speed: Medium | Block: 6
+Magic Cost: 20
+Accuracy: 90% | Durability: 70
+Ability: Arcane Bolt
+1.5x Magic Damage | Cost: 50"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Select" type="Button" parent="MageWeaponsSelection/LayoutMage/Weapons1/AshwoodStaffContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_yqeox")
+theme_override_font_sizes/font_size = 12
+text = "Select"
+
+[node name="Separator" type="VSeparator" parent="MageWeaponsSelection/LayoutMage/Weapons1"]
+layout_mode = 2
+
+[node name="CrystallineWandContainer" type="VBoxContainer" parent="MageWeaponsSelection/LayoutMage/Weapons1"]
+layout_mode = 2
+
+[node name="CrystallineWand" type="Label" parent="MageWeaponsSelection/LayoutMage/Weapons1/CrystallineWandContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_yqeox")
+theme_override_font_sizes/font_size = 12
+text = "Crystalline Wand
+Type: Wand | Damage: M8 P2
+Speed: Fast | Block: 2
+Magic Cost: 15
+Accuracy: 95% | Durability: 50
+Ability: Crystal Shard
+8 Mgc Damage | Cost: 40"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Select" type="Button" parent="MageWeaponsSelection/LayoutMage/Weapons1/CrystallineWandContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_yqeox")
+theme_override_font_sizes/font_size = 12
+text = "Select"
+
+[node name="HSeparator" type="HSeparator" parent="MageWeaponsSelection/LayoutMage"]
+layout_mode = 2
+
+[node name="RuneCarvedOrbContainer" type="VBoxContainer" parent="MageWeaponsSelection/LayoutMage"]
+layout_mode = 2
+
+[node name="RuneCarvedOrb" type="Label" parent="MageWeaponsSelection/LayoutMage/RuneCarvedOrbContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_yqeox")
+theme_override_font_sizes/font_size = 12
+text = "Rune-Carved Orb
+Type: Arcane | Damage: M12 P4
+Speed: Slow | Block: 1
+Magic Cost: 25
+Accuracy: 85% | Durability: 100
+Ability: Pulse
+0.5x Damage -> All | Skips Next Turn
+Cost: 45"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Select" type="Button" parent="MageWeaponsSelection/LayoutMage/RuneCarvedOrbContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_yqeox")
+theme_override_font_sizes/font_size = 12
+text = "Select"
+
+[node name="BarbarianWeaponsSelection" type="PopupPanel" parent="."]
+oversampling_override = 1.0
+title = "Character Creation"
+initial_position = 2
+size = Vector2i(399, 331)
+
+[node name="LayoutBarbarian" type="VBoxContainer" parent="BarbarianWeaponsSelection"]
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 395.0
+offset_bottom = 327.0
+size_flags_vertical = 3
+
+[node name="Title" type="Label" parent="BarbarianWeaponsSelection/LayoutBarbarian"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_yqeox")
+theme_override_font_sizes/font_size = 20
+text = "Choose your Weapon"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Weapons1" type="HBoxContainer" parent="BarbarianWeaponsSelection/LayoutBarbarian"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="BoneClubContainer" type="VBoxContainer" parent="BarbarianWeaponsSelection/LayoutBarbarian/Weapons1"]
+layout_mode = 2
+
+[node name="BoneClub" type="Label" parent="BarbarianWeaponsSelection/LayoutBarbarian/Weapons1/BoneClubContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_yqeox")
+theme_override_font_sizes/font_size = 12
+text = "Bone Club
+Type: Blunt | Damage: P15
+Speed: Very Slow | Block: 1
+Accuracy: 100% | Durability: 80
+Ability: Pound
+3x Damage"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Select" type="Button" parent="BarbarianWeaponsSelection/LayoutBarbarian/Weapons1/BoneClubContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_yqeox")
+theme_override_font_sizes/font_size = 12
+text = "Select"
+
+[node name="Separator" type="VSeparator" parent="BarbarianWeaponsSelection/LayoutBarbarian/Weapons1"]
+layout_mode = 2
+
+[node name="BasicFlailContainer" type="VBoxContainer" parent="BarbarianWeaponsSelection/LayoutBarbarian/Weapons1"]
+layout_mode = 2
+
+[node name="BasicFlail" type="Label" parent="BarbarianWeaponsSelection/LayoutBarbarian/Weapons1/BasicFlailContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_yqeox")
+theme_override_font_sizes/font_size = 12
+text = "Basic Flail
+Type: Blunt | Damage: P12
+Speed: Medium | Block: 3
+Accuracy: 75% | Durability: 90
+Ability: Spin
+0.5x Damage -> all"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Select" type="Button" parent="BarbarianWeaponsSelection/LayoutBarbarian/Weapons1/BasicFlailContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_yqeox")
+theme_override_font_sizes/font_size = 12
+text = "Select"
+
+[node name="HSeparator" type="HSeparator" parent="BarbarianWeaponsSelection/LayoutBarbarian"]
+layout_mode = 2
+
+[node name="Weapons2" type="HBoxContainer" parent="BarbarianWeaponsSelection/LayoutBarbarian"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="CrowbarContainer" type="VBoxContainer" parent="BarbarianWeaponsSelection/LayoutBarbarian/Weapons2"]
+layout_mode = 2
+
+[node name="Crowbar" type="Label" parent="BarbarianWeaponsSelection/LayoutBarbarian/Weapons2/CrowbarContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_yqeox")
+theme_override_font_sizes/font_size = 12
+text = "Crowbar
+Type: Sharp/Blunt | Damage: P8
+Speed: Fast | Block: 3
+Accuracy: 80% | Durability: 65
+Ability: Stab
+x2 Damage | Skip Next Turn"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Select" type="Button" parent="BarbarianWeaponsSelection/LayoutBarbarian/Weapons2/CrowbarContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_yqeox")
+theme_override_font_sizes/font_size = 12
+text = "Select"
+
+[node name="Separator" type="VSeparator" parent="BarbarianWeaponsSelection/LayoutBarbarian/Weapons2"]
+layout_mode = 2
+
+[node name="SwordHiltContainer" type="VBoxContainer" parent="BarbarianWeaponsSelection/LayoutBarbarian/Weapons2"]
+layout_mode = 2
+
+[node name="SwordHilt" type="Label" parent="BarbarianWeaponsSelection/LayoutBarbarian/Weapons2/SwordHiltContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_yqeox")
+theme_override_font_sizes/font_size = 12
+text = "Sword Hilt
+Type: Broken | Damage: P10
+Speed: Fast | Block: 5
+Accuracy: 80% | Durability: 40
+Ability: Frenzy
+3x Damage | DMG 0.5x 2 turns"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Select" type="Button" parent="BarbarianWeaponsSelection/LayoutBarbarian/Weapons2/SwordHiltContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_yqeox")
+theme_override_font_sizes/font_size = 12
+text = "Select"
+
+[connection signal="pressed" from="MenuContainer/NewGame" to="." method="_on_new_game_pressed"]
+[connection signal="pressed" from="MenuContainer/Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="CharCreation/Layout/Continue" to="." method="_on_continue_cswp_pressed"]
+[connection signal="pressed" from="CharCreation/Layout/Cancel" to="." method="_on_cancel_charcc_pressed"]
+[connection signal="pressed" from="WarriorWeaponsSelection/LayoutWarrior/Weapons1/IronBroadswordContainer/Select" to="." method="_on_select_pressed" binds= ["IronBroadsword"]]
