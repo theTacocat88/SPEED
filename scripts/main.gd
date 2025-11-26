@@ -64,6 +64,8 @@ func _on_continue_cswp_pressed() -> void:
 			player["sp"] = 5
 			player["spl"] = 1
 	player["level"] = 0
+	player["weapons"] = []
+	player["equipped_weapon"] = ""
 	
 	save()
 	weapon_window()
@@ -83,7 +85,7 @@ func weapon_window():
 			char_creation_popup_barbarian.popup_centered()
 
 func save():
-	var filepath: String = "user://save.json" % player["name"].to_lower().replace(" ", "_")
+	var filepath: String = "user://save.json"
 	var file = FileAccess.open(filepath, FileAccess.WRITE)
 	if file == null:
 		print("Save failed -> user://")
@@ -91,7 +93,14 @@ func save():
 	file.store_string(json_str)
 	file.close()
 
-
 func _on_select_pressed(weapon: String) -> void:
 	player["equipped_weapon"] = weapon
 	player["weapons"].append(weapon)
+	save()
+	match player["base"]:
+		"Warrior":
+			char_creation_popup_warrior.hide()
+		"Mage":
+			char_creation_popup_mage.hide()
+		"Barbarian":
+			char_creation_popup_barbarian.hide()
