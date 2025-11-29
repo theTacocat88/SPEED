@@ -182,3 +182,11 @@ func _update_all_plus_buttons() -> void:
 		var btn = skill_grid.get_child(i) as Button
 		if btn:
 			btn.disabled = !enabled
+
+
+func _on_delete_save_pressed() -> void:
+	var file_path = "user://save.json"
+	if DirAccess.remove_absolute(file_path) == OK:
+		return
+	else:
+		return
