@@ -38,43 +38,11 @@ func _on_continue_cswp_pressed() -> void:
 	player["base"] = base_select.get_item_text(base_select.selected)
 	match player["base"]:
 		"Warrior":
-			player["max_health"] = 100
-			player["health"] = 100
-			player["dex"] = 3
-			player["str"] = 3
-			player["vit"] = 2
-			player["int"] = 1
-			player["wis"] = 0
-			player["cha"] = 2
-			player["mgc"] = 0
-			player["sp"] = 3
-			player["spl"] = 1
+			_set_warrior()
 		"Mage":
-			player["max_health"] = 90
-			player["health"] = 90
-			player["dex"] = 4
-			player["str"] = 1
-			player["vit"] = 3
-			player["int"] = 4
-			player["wis"] = 3
-			player["cha"] = 0
-			player["mgc"] = 5
-			player["gmgc"] = 100
-			player["mgcr"] = 5
-			player["sp"] = 2
-			player["spl"] = 1
+			_set_mage()
 		"Barbarian":
-			player["max_health"] = 110
-			player["health"] = 110
-			player["dex"] = 1
-			player["str"] = 5
-			player["vit"] = 2
-			player["int"] = 0
-			player["wis"] = 0
-			player["cha"] = 1
-			player["mgc"] = 0
-			player["sp"] = 5
-			player["spl"] = 1
+			_set_barbarian()
 	player["level"] = 0
 	player["weapons"] = []
 	player["equipped_weapon"] = ""
@@ -82,6 +50,43 @@ func _on_continue_cswp_pressed() -> void:
 	# CRITICAL: USE SAVE TO SAVE player[] TO save.json
 	save()
 	weapon_window()
+
+# NOTE: set player to warrior
+func _set_warrior() -> void:
+	player["max_health"] = 100; player["health"] = 100
+	player["dex"] = 3; player["str"] = 3; player["vit"] = 2
+	player["int"] = 1; player["wis"] = 0; player["cha"] = 2
+	player["mgc"] = 0
+	player["sp"] = 3; player["spl"] = 1
+
+# NOTE: set player to mage
+func _set_mage() -> void:
+	player["max_health"] = 90; player["health"] = 90
+	player["dex"] = 4; player["str"] = 1; player["vit"] = 3
+	player["int"] = 4; player["wis"] = 3; player["cha"] = 0
+	player["mgc"] = 5
+	player["gmgc"] = 100; player["mgcr"] = 5
+	player["sp"] = 2; player["spl"] = 1
+
+# NOTE: set player to barbarian
+func _set_barbarian() -> void:
+	player["max_health"] = 110; player["health"] = 110
+	player["dex"] = 1; player["str"] = 5; player["vit"] = 2
+	player["int"] = 0; player["wis"] = 0; player["cha"] = 1
+	player["mgc"] = 0
+	player["sp"] = 5; player["spl"] = 1
+
+# NOTE: Get the current stat list for the player's base
+func _get_stat_list_for_base() -> Array:
+	match player["base"]:
+		"Warrior":
+			return ["max_health","health","dex","str","vit","int","wis","cha","mgc","spl"]
+		"Mage":
+			return ["max_health","health","dex","str","vit","int","wis","cha","mgc","spl","gmgc","mgcr"]
+		"Barbarian":
+			return ["max_health","health","dex","str","vit","int","wis","cha","mgc","spl"]
+		_:
+			return []
 
 # NOTE: Cancel in first char_creation popup
 func _on_cancel_charcc_pressed() -> void:
@@ -123,16 +128,57 @@ func _on_select_pressed(weapon: String) -> void:
 	
 	allocate_skills()
 
-# NOTE: Spend button in Stat Allocation
-func _on_spend_pressed() -> void:
-	pass # Replace with function body.
-
 # NOTE: Done button in Stat Allocation
-func _on_done_pressed() -> void:
-	pass # Replace with function body.
+func _on_done_stat_pressed() -> void:
+	skill_point_allocation.hide()
 
 # INFO: Shows skill point allocation screen
 func allocate_skills():
-	pass
+	for child in skill_grid.get_children():
+		child.queue_free()
+	
+	var stats = _get_stat_list_for_base()
+	for stat in stats:
+		var current = player.get(stat, 0)
+		var label = Label.new()
+		label.text = "%s: %d" % [stat, current]
+		label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		skill_grid.add_child(label)
+		
+		var button = Button.new()
+		button.text = "+"
+		button.disabled = (player['sp'] <= 0)
+		button.pressed.connect(func():
+			if player['sp'] <= 0:
+				return
+			player['sp'] -= 1
+			
+			match stat:
+				"max_health", "health", "mgc", "mgcr", "spl":
+					player[stat] += 5
+				"gmgc":
+					player[stat] += 10
+				_:
+					player[stat] += 1
+			if stat == "max_health":
+				player["health"] = min(player["health"], player["max_health"])
+			label.text = "%s: %d" % [stat, player[stat]]
+			_update_sp_label()
+			_update_all_plus_buttons()
+			save()
+		)
+		skill_grid.add_child(button)
+	
+	_update_sp_label()
+	_update_all_plus_buttons()
+	skill_point_allocation.popup_centered()
 
-#CRITICAL: FINISH ALLOCATION
+func _update_sp_label() -> void:
+	sp_label.text = "Skill Points: %d" % player["sp"]
+
+func _update_all_plus_buttons() -> void:
+	var enabled = player['sp'] > 0
+	for i in range(1, skill_grid.get_child_count(), 2):  # INFO: every 2nd child = button
+		var btn = skill_grid.get_child(i) as Button
+		if btn:
+			btn.disabled = !enabled

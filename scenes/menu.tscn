@@ -502,7 +502,6 @@ text = "Select"
 oversampling_override = 1.0
 initial_position = 2
 size = Vector2i(150, 105)
-visible = true
 
 [node name="SkillPoints" type="VBoxContainer" parent="SkillPointAllocation"]
 offset_left = 4.0
@@ -518,14 +517,10 @@ vertical_alignment = 1
 
 [node name="SkillGrid" type="GridContainer" parent="SkillPointAllocation/SkillPoints"]
 layout_mode = 2
-columns = 3
+columns = 2
 
 [node name="ButtonBox" type="VBoxContainer" parent="SkillPointAllocation/SkillPoints"]
 layout_mode = 2
-
-[node name="Spend" type="Button" parent="SkillPointAllocation/SkillPoints/ButtonBox"]
-layout_mode = 2
-text = "Spend Point"
 
 [node name="Done" type="Button" parent="SkillPointAllocation/SkillPoints/ButtonBox"]
 layout_mode = 2
@@ -547,5 +542,4 @@ text = "Done"
 [connection signal="pressed" from="BarbarianWeaponsSelection/LayoutBarbarian/Weapons1/BasicFlailContainer/Select" to="." method="_on_select_pressed" binds= ["BasicFlail"]]
 [connection signal="pressed" from="BarbarianWeaponsSelection/LayoutBarbarian/Weapons2/CrowbarContainer/Select" to="." method="_on_select_pressed" binds= ["Crowbar"]]
 [connection signal="pressed" from="BarbarianWeaponsSelection/LayoutBarbarian/Weapons2/SwordHiltContainer/Select" to="." method="_on_select_pressed" binds= ["SwordHilt"]]
-[connection signal="pressed" from="SkillPointAllocation/SkillPoints/ButtonBox/Spend" to="." method="_on_spend_pressed"]
-[connection signal="pressed" from="SkillPointAllocation/SkillPoints/ButtonBox/Done" to="." method="_on_done_pressed"]
+[connection signal="pressed" from="SkillPointAllocation/SkillPoints/ButtonBox/Done" to="." method="_on_done_stat_pressed"]
