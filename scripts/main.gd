@@ -23,6 +23,7 @@ func _ready() -> void:
 
 # NOTE: Quit button
 func _on_quit_pressed() -> void:
+	save()
 	get_tree().quit(0)
 
 # NOTE: New Game button
@@ -182,7 +183,6 @@ func _update_all_plus_buttons() -> void:
 		var btn = skill_grid.get_child(i) as Button
 		if btn:
 			btn.disabled = !enabled
-
 
 func _on_delete_save_pressed() -> void:
 	var file_path = "user://save.json"
