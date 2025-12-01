@@ -531,6 +531,7 @@ layout_mode = 2
 text = "Done"
 
 [connection signal="pressed" from="MenuContainer/NewGame" to="." method="_on_new_game_pressed"]
+[connection signal="pressed" from="MenuContainer/LoadGame" to="." method="_on_load_game_pressed"]
 [connection signal="pressed" from="MenuContainer/DeleteSave" to="." method="_on_delete_save_pressed"]
 [connection signal="pressed" from="MenuContainer/Quit" to="." method="_on_quit_pressed"]
 [connection signal="pressed" from="CharCreation/Layout/Continue" to="." method="_on_continue_cswp_pressed"]

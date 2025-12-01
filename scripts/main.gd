@@ -48,7 +48,7 @@ func _on_continue_cswp_pressed() -> void:
 	player["weapons"] = []
 	player["equipped_weapon"] = ""
 	
-	# CRITICAL: USE SAVE TO SAVE player[] TO save.json
+	# CRITICAL: USE SAVE TO SAVE player TO save.json
 	save()
 	weapon_window()
 
@@ -114,6 +114,14 @@ func save():
 	file.store_string(json_str)
 	file.close()
 
+# CRITICAL: USE FOR LOADING FROM save.json
+func loads():
+	var filepath: String = "user://save.json"
+	if FileAccess.file_exists(filepath):
+		var file = FileAccess.open(filepath, FileAccess.READ)
+		var json_str: String = file.get_as_text()
+		player = JSON.parse_string(json_str)
+
 # NOTE: Select button in weapon selection
 func _on_select_pressed(weapon: String) -> void:
 	player["equipped_weapon"] = weapon
@@ -132,6 +140,7 @@ func _on_select_pressed(weapon: String) -> void:
 # NOTE: Done button in Stat Allocation
 func _on_done_stat_pressed() -> void:
 	skill_point_allocation.hide()
+	get_tree().change_scene_to_file("res://scenes/game_menu.tscn")
 
 # INFO: Shows skill point allocation screen
 func allocate_skills():
@@ -190,3 +199,8 @@ func _on_delete_save_pressed() -> void:
 		return
 	else:
 		return
+
+
+func _on_load_game_pressed() -> void:
+	loads()
+	get_tree().change_scene_to_file("res://scenes/game_menu.tscn")
