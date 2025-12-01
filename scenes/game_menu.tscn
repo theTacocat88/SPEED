@@ -7,3 +7,14 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="Menu" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 800.0
+offset_bottom = 600.0
+
+[node name="Label" type="Label" parent="Menu"]
+layout_mode = 2
+text = "PlayerName
+finish this section"
+horizontal_alignment = 1

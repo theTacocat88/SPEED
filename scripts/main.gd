@@ -203,4 +203,5 @@ func _on_delete_save_pressed() -> void:
 
 func _on_load_game_pressed() -> void:
 	loads()
-	get_tree().change_scene_to_file("res://scenes/game_menu.tscn")
+	if player != {}:
+		get_tree().change_scene_to_file("res://scenes/game_menu.tscn")
