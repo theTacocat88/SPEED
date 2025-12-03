@@ -140,7 +140,9 @@ func _on_select_pressed(weapon: String) -> void:
 # NOTE: Done button in Stat Allocation
 func _on_done_stat_pressed() -> void:
 	skill_point_allocation.hide()
-	get_tree().change_scene_to_file("res://scenes/game_menu.tscn")
+	if player != {}:
+		save()
+		get_tree().change_scene_to_file("res://scenes/game_menu.tscn")
 
 # INFO: Shows skill point allocation screen
 func allocate_skills():
@@ -204,4 +206,5 @@ func _on_delete_save_pressed() -> void:
 func _on_load_game_pressed() -> void:
 	loads()
 	if player != {}:
+		save()
 		get_tree().change_scene_to_file("res://scenes/game_menu.tscn")

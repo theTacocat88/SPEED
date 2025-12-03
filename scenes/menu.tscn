@@ -56,13 +56,13 @@ text = "Quit"
 oversampling_override = 1.0
 title = "Character Creation"
 initial_position = 2
-size = Vector2i(400, 201)
+size = Vector2i(400, 228)
 
 [node name="Layout" type="VBoxContainer" parent="CharCreation"]
 offset_left = 4.0
 offset_top = 4.0
 offset_right = 396.0
-offset_bottom = 197.0
+offset_bottom = 224.0
 size_flags_vertical = 3
 
 [node name="Title" type="Label" parent="CharCreation/Layout"]
@@ -70,6 +70,12 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("1_yqeox")
 theme_override_font_sizes/font_size = 20
 text = "Create your Character:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="CharCreation/Layout"]
+layout_mode = 2
+text = "This will overwrite your current save file!"
 horizontal_alignment = 1
 vertical_alignment = 1
 
