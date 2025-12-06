@@ -26,3 +26,9 @@ func loads():
 		var json_str: String = file.get_as_text()
 		player = JSON.parse_string(json_str)
 		file.close()
+
+func _on_quit_pressed() -> void:
+	get_tree().change_scene_to_file("res://scenes/menu.tscn")
+
+func _start_battle() -> void:
+	pass

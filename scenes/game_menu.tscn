@@ -38,3 +38,6 @@ text = "Stats"
 [node name="Quit" type="Button" parent="Menu"]
 layout_mode = 2
 text = "Quit"
+
+[connection signal="pressed" from="Menu/NewBattle" to="." method="_start_battle"]
+[connection signal="pressed" from="Menu/Quit" to="." method="_on_quit_pressed"]
